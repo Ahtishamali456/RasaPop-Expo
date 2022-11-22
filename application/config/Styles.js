@@ -572,11 +572,12 @@ module.exports = StyleSheet.create({
     height: screenHeight * 0.3,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor:'red',
     marginTop: 20,
   },
 
   ImageProfile: {
-    borderRadius: 100,
+    borderRadius: 150,
     width: screenWidth * 0.28,
     height: "auto",
     minHeight: screenWidth * 0.28,

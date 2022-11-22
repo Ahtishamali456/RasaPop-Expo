@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Dimensions, I18nManager } from "react-native";
+import {
+  Dimensions,
+  I18nManager,
+  TouchableOpacity,
+  Animated,
+  StyleSheet,
+} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Strings from "../config/Strings";
 import { IconButton } from "react-native-paper";
@@ -18,6 +24,7 @@ import LoginSplash from "../screens/LoginSplash";
 import CheckOut from "../screens/Checkout";
 import EditProfile from "../screens/EditProfile";
 import RadeemPoints from "../screens/RadeemPoints";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import Shop from "../screens/Shop";
 import ProfileSeller from "../screens/ProfileSeller";
 
@@ -156,7 +163,55 @@ export default function StackNavigation(props) {
       <Stack.Screen
         name="ProfileSeller"
         component={ProfileSeller}
-        options={{ headerShown: false }}
+        options={({ navigation }) => ({
+          title: "Profile",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginStart: "15%" }}
+              onPress={() => props.navigation.goBack()}
+            >
+              <Ionicons name="chevron-back" size={22} color={"white"} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ marginEnd: "15%" }}>
+              <AntDesign name="edit" size={22} color={"white"} />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="RadeemPoints"
+        component={RadeemPoints}
+        options={({ navigation }) => ({
+          title: "Profile",
+          headerBackground: () => (
+            <Animated.View
+              style={{
+                ...StyleSheet.absoluteFillObject,
+                backgroundColor: "#FBFBFB",
+              }}
+            />
+          ),
+          headerTitleStyle: { color: "black", fontSize: 17, fontWeight: "600" },
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginStart: "15%" }}
+              onPress={() => props.navigation.goBack()}
+            >
+              <AntDesign name="user" size={22} color={"black"} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ marginEnd: "15%" }}>
+              <Ionicons
+                name="ios-notifications-outline"
+                size={22}
+                color={"black"}
+              />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="members"
@@ -187,11 +242,6 @@ export default function StackNavigation(props) {
         name="EditProfile"
         component={EditProfile}
         options={{ title: Strings.ST116, headerLeft: () => buttonBack() }}
-      />
-      <Stack.Screen
-        name="RadeemPoints"
-        component={RadeemPoints}
-        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -1,23 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   StyleSheet,
-  StatusBar,
   View,
   Text,
   Dimensions,
   Switch,
   ScrollView,
-} from 'react-native';
-import Icon from '@expo/vector-icons/Ionicons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import MenuRadeem from '../components/MenuRadeem';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {LineChart} from 'react-native-chart-kit';
-import ColorsApp from '../config/ColorsApp';
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import Icon from "@expo/vector-icons/Ionicons";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import MenuRadeem from "../components/MenuRadeem";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { LineChart } from "react-native-chart-kit";
+import ColorsApp from "../config/ColorsApp";
 
-const Height = Dimensions.get('screen').height;
-const Width = Dimensions.get('screen').width;
+const Height = Dimensions.get("screen").height;
+const Width = Dimensions.get("screen").width;
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -26,7 +26,7 @@ export default function RadeemPoints(props) {
   return (
     <View style={Styles.Container}>
       <StatusBar backgroundColor="transparent" style="dark" />
-      <View style={StylesHeader.Container}>
+      {/* <View style={StylesHeader.Container}>
         <View style={StylesHeader.view1}>
           <TouchableOpacity onPress={() => props.navigation.goBack()}>
             <AntDesign name="user" size={22} />
@@ -40,11 +40,12 @@ export default function RadeemPoints(props) {
             <Icon name="ios-notifications-outline" size={22} />
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
 
       <ScrollView
         contentContainerStyle={Styles.ScrollMain}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         <View style={StylesMain.Container}>
           <View style={StylesMain.CardOnline}>
             <View style={StylesMain.CardOnline1}>
@@ -55,9 +56,9 @@ export default function RadeemPoints(props) {
             </View>
             <View style={StylesMain.CardOnline3}>
               <Switch
-                trackColor={{false: 'lightgray', true: ColorsApp.PRIMARY2}}
-                thumbColor={online ? 'white' : '#f4f3f4'}
-                onValueChange={val => setOnline(val)}
+                trackColor={{ false: "lightgray", true: ColorsApp.PRIMARY2 }}
+                thumbColor={online ? "white" : "#f4f3f4"}
+                onValueChange={(val) => setOnline(val)}
                 value={online}
               />
             </View>
@@ -66,17 +67,18 @@ export default function RadeemPoints(props) {
           <View style={StylesMain.Earning}>
             <Text style={StylesMain.Moneytext}>Money I've Earned</Text>
             <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
               <EarningCard
                 amount={3000}
-                text={'Earned      '}
-                iconName={'checkmark'}
+                text={"Earned      "}
+                iconName={"checkmark"}
                 iconColor={ColorsApp.PRIMARY}
               />
               <EarningCard
                 amount={5000}
-                text={'Pending    '}
-                iconName={'time-outline'}
+                text={"Pending    "}
+                iconName={"time-outline"}
                 iconColor={ColorsApp.PRIMARY2}
               />
             </View>
@@ -88,9 +90,10 @@ export default function RadeemPoints(props) {
 
           <View style={StylesGraphNavigation.Container}>
             <Tab.Navigator
-              style={{elevation: 0.4, borderRadius: 10}}
+              style={{ elevation: 0.4, borderRadius: 10 }}
               initialRouteName="Sales Trends"
-              screenOptions={StylesGraphNavigation.ScreenOptions}>
+              screenOptions={StylesGraphNavigation.ScreenOptions}
+            >
               <Tab.Screen
                 name="Sales Trends"
                 component={() => <GraphTrend />}
@@ -106,16 +109,17 @@ export default function RadeemPoints(props) {
   );
 }
 
-const EarningCard = props => {
+const EarningCard = (props) => {
   return (
     <View style={StylesEarningCard.Container}>
       <View style={StylesEarningCard.view1}>
         <View
           style={[
             StylesEarningCard.iconCard,
-            {backgroundColor: props.iconColor},
-          ]}>
-          <Icon name={props.iconName} color={'white'} size={20} />
+            { backgroundColor: props.iconColor },
+          ]}
+        >
+          <Icon name={props.iconName} color={"white"} size={20} />
         </View>
         <Text style={StylesMain.onlineText}>{props.text}</Text>
       </View>
@@ -131,7 +135,7 @@ const GraphTrend = () => {
   return (
     <LineChart
       data={{
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         datasets: [
           {
             data: [
@@ -155,9 +159,9 @@ const GraphTrend = () => {
       chartConfig={{
         backgroundGradientFromOpacity: 0,
         backgroundGradientToOpacity: 0,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         backgroundGradientFrom: ColorsApp.PRIMARY,
-        backgroundGradientTo: 'transparent',
+        backgroundGradientTo: "transparent",
         decimalPlaces: 2,
         color: (opacity = 1) => ColorsApp.PRIMARY,
         labelColor: (opacity = 1) => `gray`,
@@ -165,13 +169,13 @@ const GraphTrend = () => {
           borderRadius: 16,
         },
         propsForDots: {
-          r: '6',
-          strokeWidth: '2',
-          stroke: 'white',
+          r: "6",
+          strokeWidth: "2",
+          stroke: "white",
         },
       }}
       bezier
-      style={{marginTop: 10}}
+      style={{ marginTop: 10 }}
     />
   );
 };
@@ -179,11 +183,11 @@ const GraphTrend = () => {
 const Styles = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: '#FBFBFB',
-    alignItems: 'center',
+    backgroundColor: "#FBFBFB",
+    alignItems: "center",
   },
   ScrollMain: {
-    alignItems: 'center',
+    alignItems: "center",
     paddingBottom: 5,
     paddingHorizontal: 1,
   },
@@ -191,25 +195,25 @@ const Styles = StyleSheet.create({
 
 const StylesHeader = StyleSheet.create({
   Container: {
-    marginTop: '10%',
+    marginTop: "10%",
     height: Height * 0.06,
     width: Width,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
   heading: {
-    color: 'black',
+    color: "black",
     fontSize: 18,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   view1: {
-    width: '20%',
-    alignItems: 'flex-start',
-    paddingStart: '5%',
+    width: "20%",
+    alignItems: "flex-start",
+    paddingStart: "5%",
   },
-  view2: {width: '60%', alignItems: 'center'},
-  view3: {width: '20%', alignItems: 'flex-end', paddingEnd: '5%'},
+  view2: { width: "60%", alignItems: "center" },
+  view3: { width: "20%", alignItems: "flex-end", paddingEnd: "5%" },
 });
 
 const StylesMain = StyleSheet.create({
@@ -218,45 +222,45 @@ const StylesMain = StyleSheet.create({
     width: Width * 0.9,
   },
   CardOnline: {
-    marginTop: '10%',
+    marginTop: "10%",
     height: 55,
     borderRadius: 13,
     elevation: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
   },
   onlineText: {
-    color: 'black',
+    color: "black",
     fontSize: 13,
-    fontWeight: '300',
+    fontWeight: "300",
   },
   CardOnline1: {
-    width: '20%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "20%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   CardOnline2: {
-    width: '55%',
-    height: '100%',
-    justifyContent: 'center',
+    width: "55%",
+    height: "100%",
+    justifyContent: "center",
   },
   CardOnline3: {
-    width: '25%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "25%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   Earning: {
-    marginTop: '5%',
+    marginTop: "5%",
   },
   Moneytext: {
-    color: 'black',
+    color: "black",
     fontSize: 17,
-    marginBottom: '3%',
+    marginBottom: "3%",
     paddingStart: 5,
-    fontWeight: '300',
+    fontWeight: "300",
   },
 });
 
@@ -265,29 +269,29 @@ const StylesEarningCard = StyleSheet.create({
     height: 90,
     width: 150,
     elevation: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 15,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   view1: {
-    flexDirection: 'row',
-    width: '70%',
+    flexDirection: "row",
+    width: "70%",
     margin: 5,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   iconCard: {
     width: 30,
     height: 30,
     borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   amount: {
-    color: 'black',
+    color: "black",
     fontSize: 17,
-    fontWeight: '350',
+    fontWeight: "350",
   },
 });
 
@@ -298,14 +302,14 @@ const StylesGraphNavigation = StyleSheet.create({
     elevation: 1,
   },
   ScreenOptions: {
-    tabBarLabelStyle: {fontSize: 10, fontWeight: '500'},
+    tabBarLabelStyle: { fontSize: 10, fontWeight: "500" },
     tabBarStyle: {
-      backgroundColor: 'white',
+      backgroundColor: "white",
       borderTopRightRadius: 10,
       borderTopLeftRadius: 10,
       elevation: 0.6,
     },
-    tabBarInactiveTintColor: 'gray',
+    tabBarInactiveTintColor: "gray",
     tabBarActiveTintColor: ColorsApp.PRIMARY,
     tabBarIndicatorStyle: {
       backgroundColor: ColorsApp.PRIMARY,

@@ -39,7 +39,7 @@ export default function LoginSheet(props) {
             color={"white"}
             textColor={"black"}
             logocolor={"#ff0000a9"}
-            width={0.2}
+            width={0.3}
           />
         </TouchableOpacity>
         <View style={Styles.login}>

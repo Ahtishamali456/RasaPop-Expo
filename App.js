@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {LogBox, StatusBar} from 'react-native';
 import {Asset} from 'expo-asset';
-// import AppLoading from "expo-app-loading";
+import AppLoading from "expo-app-loading";
 import Loading from './application/components/AppLoading';
 import {
   Provider as PaperProvider,
@@ -38,7 +38,7 @@ const cacheImages = images => {
     if (typeof image === 'string') {
       return Image.prefetch(image);
     } else {
-      // return Asset.fromModule(image).downloadAsync();
+      return Asset.fromModule(image).downloadAsync();
     }
   });
 };
@@ -100,19 +100,17 @@ const App = props => {
     setTimeout(() => {
       setLoaded(true);
     }, 1500);
-
     // AdmobConfig.ShowInterstitial();
   }, []);
 
   if (!isReady) {
     return (
-      // <AppLoading
-      //   startAsync={loadAssetsAsync}
-      //   onFinish={() => setIsReady(true)}
-      //   onError={console.warn}
-      // />
-      <Loading />
-    );
+      <AppLoading
+        startAsync={loadAssetsAsync}
+        onFinish={() => setIsReady(true)}
+        onError={console.warn}
+      />
+    )
   }
 
   if (!loaded) {
